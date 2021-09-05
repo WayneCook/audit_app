@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\TemplateSection;
 use App\Models\CustomResponseGroup;
+use App\Models\AvailableResponse;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MultipleChoiceResponseGroup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,25 +20,20 @@ class Template extends Model
         return $this->hasMany(TemplateSection::class);
     }
 
-    public function templates()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    // public function multipleChoiceResponseGroups()
-    // {
-    //     return $this->hasMany(MultipleChoiceResponseGroup::class);
-    // }
 
     public function defualtMultipleChoiceResponseGroups()
     {
-        // return $this->hasMany(CustomResponseGroup::class);
-        return MultipleChoiceResponseGroup::whereNull('template_id')->get();
+        return ResponseType::whereNull('template_id')->get();
     }
 
-    public function multipleChoiceResponseGroups()
+    public function multipleChoiceResponseTypes()
     {
-        return $this->hasMany(MultipleChoiceResponseGroup::class);
+        return $this->hasMany(ResponseType::class);
+    }
+
+    public function availableResponses()
+    {
+        return $this->hasMany(AvailableResponse::class);
     }
 
   

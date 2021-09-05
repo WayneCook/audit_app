@@ -19,7 +19,7 @@ class CreateTemplateQuestionsTable extends Migration
             $table->text('question')->nullable();
             $table->integer('template_section_id');
             $table->integer('order_column');
-            $table->integer('question_response_type_id')->default(1);
+            $table->foreignId('response_type_id')->default(1);
         });
     }
 

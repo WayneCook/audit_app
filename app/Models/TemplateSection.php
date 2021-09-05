@@ -14,4 +14,7 @@ class TemplateSection extends Model
     {
         return $this->hasMany(TemplateQuestion::class)->orderBy('order_column');
     }
+    public function template() {
+      return $this->belongsTo(Template::class);
+    }
 }

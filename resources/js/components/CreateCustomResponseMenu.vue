@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     :value="menuState"
-    absolute
+    fixed
     bottom
     right
     stateless

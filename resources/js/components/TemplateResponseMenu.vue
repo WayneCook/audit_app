@@ -1,4 +1,6 @@
 <template>
+<div>
+
     <v-menu
       ref="menu"
       class="myMenu"
@@ -27,11 +29,14 @@
 
     <v-container fluid class="pa-0 ma-0 menuContainer">
         
-        <multi-choice-group></multi-choice-group>
+        <multi-choice-group :question="question"></multi-choice-group>
 
     </v-container>
 
     </v-menu>
+
+</div>
+
 </template>
 
 <script>
@@ -44,7 +49,7 @@ import { EventBus } from '@/Eventbus/event-bus.js';
 
 
 export default {
-
+    props: ['question'],
     data() {
         return {
             modalState: false
@@ -68,7 +73,12 @@ export default {
           this.$page.props.template.responseMenuDrawer.active = true;
 
           console.log(this.$page.props.template.responseMenuDrawer.active);
-        }                  
+        },                  
+    },
+    computed: {
+      getSelectedResponse() {
+
+      }
     },
     mounted() {
       EventBus.$on('closeModal', this.closeModal);

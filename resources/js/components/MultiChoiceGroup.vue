@@ -46,23 +46,21 @@
                         </div>
 
                       </v-col>
-                   
-                   
-                      
+                                         
                   </v-row>
                 </v-container>
                 
                 <v-list-item-group>
                   <v-divider></v-divider>
 
-                  <v-list-item @click="setResponseType(group)" class="ma-0 pa-0" v-for="(group, index) in multiChoiceGroup" :key="group.title">
+                  <v-list-item @click="updateQuestion(multipleChoiceResponse.id)" class="ma-0 pa-0" v-for="(multipleChoiceResponse, index) in multipleChoiceResponses" :key="multipleChoiceResponse.id">
                   <v-list-item-content class="ma-0 pa-0">
                     <v-container>
                       <v-row>
                         <v-chip
 
                           small
-                          v-for="response in group.responses"
+                          v-for="response in multipleChoiceResponse.multiple_choice_responses"
                           :key="response.id"
                           class="ma-2"
                           :color="lightenDarkenColor(response.color, 20)"
@@ -76,28 +74,6 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item @click="setResponseType(group)" class="ma-0 pa-0" v-for="(group, index) in defaultResponses" :key="group.id">
-                  <v-list-item-content class="ma-0 pa-0">
-                    <v-container>
-                      <v-row>
-                        <v-chip
-                          small
-                          v-for="response in group.responses"
-                          :key="response.id"
-                          class="ma-2"
-                          :color="lightenDarkenColor(response.color, 20)"
-                          :text-color="response.color"
-                          input-value='false'
-                        >
-                          {{response.title}}
-                        </v-chip>
-                      </v-row>
-                    </v-container>
-
-
-                  </v-list-item-content>
-                </v-list-item>
-                
                 </v-list-item-group>
               </v-list>
 
@@ -115,9 +91,10 @@
 import { EventBus } from '@/Eventbus/event-bus.js';
 
 export default {
-
+    props: ['question'],
     data() {
         return {
+          oldQuestion: this.question,
 
           swatches: [
         ['#FF0000', '#AA0000', '#550000'],
@@ -134,9 +111,16 @@ export default {
           col = parseInt(col, 16);
           return (((col & 0x0000FF) + amt) | ((((col >> 8) & 0x00FF) + amt) << 8) | (((col >> 16) + amt) << 16)).toString(16);
       },
-      setResponseType(group) {
-        console.log(group);
-        EventBus.$emit('closeModal')
+      updateQuestion(id) {
+ 
+        if(id !== this.oldQuestion.response_type_id) {
+          this.oldQuestion.response_type_id = id
+          delete this.oldQuestion.response_type
+
+          this.$inertia.put(`/question/${this.question.id}`, 
+            { question: this.oldQuestion},
+            { preserveState: true, preserveScroll: true  } ) 
+        }
       },
       toggleMenuState() {
         EventBus.$emit('toggleMenuState')
@@ -145,15 +129,9 @@ export default {
         
     },
     computed: {
-        multiChoiceGroup() {
-          return this.$page.props.template.multiple_choice_response_groups
-        },
-        defaultResponses() {
-          return this.$page.props.default_responses; 
+        multipleChoiceResponses() {
+          return this.$page.props.template.multiple_choice_response_types
         }
-    },
-    mounted() {
-      
     }
 
 }

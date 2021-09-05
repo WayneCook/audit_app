@@ -4,7 +4,7 @@ require('./bootstrap')
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css'
 import VueDraggable from 'vuedraggable'
-import VueTextareaAutosize from 'vue-textarea-autosize'
+
 
 //Packages
 import Vue from 'vue'
@@ -17,7 +17,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 Vue.use(vuetify)
 Vue.use(VueDraggable);
-Vue.use(VueTextareaAutosize)
+
 
 
 Vue.config.devtools = false

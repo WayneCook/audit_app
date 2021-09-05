@@ -1,6 +1,6 @@
 <template>
     <v-app>
-      <!-- <create-custom-response-menu fixed :menuState="menuState"></create-custom-response-menu> -->
+      <create-custom-response-menu absolute :menuState="menuState"></create-custom-response-menu>
         <v-main>
             <v-container fluid class="custom-container ma-0 pa-0">
                 <v-navigation-drawer v-model="drawer" color="#364150" dark app>
@@ -138,7 +138,7 @@ import { EventBus } from '@/Eventbus/event-bus.js'
 export default {
     data() {
         return {
-            drawer: true,
+            drawer: false,
             snackbar: false,
             menuState: false
         };
@@ -181,8 +181,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+
+/* * {
+  cursor: default;
+} */
+
+
 .v-main {
     background-color: #eef1f5;
 }
+
+
 </style>

@@ -19,16 +19,13 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentSeeder::class);
         $this->call(AuditSeeder::class);
         $this->call(CategorySeeder::class);
-        $this->call(TestSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(DepartmentUserSeeder::class);
         $this->call(TemplateSeeder::class);
         $this->call(TemplateSectionSeeder::class);
-        $this->call(MultipleChoiceResponseGroupSeeder::class);
-        $this->call(MultipleChoiceResponseSeeder::class);
         $this->call(TemplateQuestionSeeder::class);
-        // $this->call(CustomResponseGroupSeeder::class);
-        // $this->call(CustomResponseSeeder::class);
+        $this->call(MultipleChoiceResponseSeeder::class);
+        $this->call(ResponseTypeSeeder::class);
  
     }
 }

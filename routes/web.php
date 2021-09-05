@@ -7,9 +7,11 @@ use App\Models\Audit;
 use App\Models\Template;
 use App\Models\UserAudit;
 
+use App\Models\ResponseType;
 use Illuminate\Http\Request;
 use App\Models\TemplateSection;
 use App\Models\TemplateQuestion;
+use App\Models\AvailableResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\MultipleChoiceResponse;
@@ -18,6 +20,7 @@ use App\Models\MultipleChoiceResponseType;
 use App\Models\MultipleChoiceResponseGroup;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\DepartmentController;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use App\Http\Controllers\TemplateQuestionController;
 use App\Http\Controllers\CustomResponseGroupController;
 use App\Http\Controllers\MultipleChoiceResponseGroupController;
@@ -46,21 +49,10 @@ Route::resource('custom_response_group', CustomResponseGroupController::class)->
 
 Route::get('/test', function () {
 
-  dd(request()->csrf_token);
+  $question = TemplateQuestion::find(1);
 
-$template = Template::find(1);
+  dd($question->responseType()->first());
 
-$section = new TemplateSection();
-
-$section->title = 'tester';
-
-$template->sections()->save($section);
-
-  // dd(MultipleChoiceResponseGroup::whereNull('template_id')->with('responses')->get());
-
-
-
-    
 });
 
 Route::get('/reorder', function (Request $request) {

@@ -36,9 +36,9 @@ class TemplateQuestionController extends Controller
      */
     public function store(Request $request)
     {   
+  
       $section = TemplateSection::find($request->section_id);
       $question = new TemplateQuestion();
-      $question->question = $request->question;
       $section->questions()->save($question);   
       return back();   
     }
@@ -72,13 +72,20 @@ class TemplateQuestionController extends Controller
      * @param  \App\Models\TemplateQuestion  $templateQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, TemplateQuestion $question)
     {
-      $templateQuestion = TemplateQuestion::find($request->question_id);
-      $templateQuestion->question = $request->question;
-      $templateQuestion->save();
+
+
+      $question->update($request->question);
 
       return back();
+
+
+      // $templateQuestion = TemplateQuestion::find($request->question_id);
+      // $templateQuestion->question = $request->question;
+      // $templateQuestion->save();
+
+      // return back();
 
     }
 

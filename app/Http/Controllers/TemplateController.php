@@ -32,8 +32,7 @@ class TemplateController extends Controller
     
     {
         return inertia('Admin/Templates/Create', [
-            'template' => Template::with('sections.questions')->with('multipleChoiceResponseGroups.responses')->find(1),
-            'default_responses' => MultipleChoiceResponseGroup::whereNull('template_id')->with('responses')->get()
+            'template' => Template::with('sections.questions.responseType')->with(['multipleChoiceResponseTypes.multipleChoiceResponses'])->find(1)
         ]);
     }
 
