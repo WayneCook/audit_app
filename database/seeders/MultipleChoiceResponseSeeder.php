@@ -59,46 +59,15 @@ class MultipleChoiceResponseSeeder extends Seeder
         $response->value = 0;
         $response->responseType()->associate($type)->save();
 
-
+        $response = new MultipleChoiceResponse();
+        $response->title = 'not-available';
+        $response->color = '#808080';
+        $response->value = 0;
+        $response->responseType()->associate($type)->save();
 
         //New group
 
-        // $response = new MultipleChoiceResponse();
-        // $response->multiple_choice_response_group_id = 2;
-        // $response->title = 'Compliant';
-        // $response->color = '#008000';
-        // $response->value = 1;
-        // $response->save();
-
-        // $response = new MultipleChoiceResponse();
-        // $response->multiple_choice_response_group_id = 2;
-        // $response->title = 'Non Compliant';
-        // $response->color = '#FF0000';
-        // $response->value = 0;
-        // $response->save();
-
-        // New group
-
-        // $response = new MultipleChoiceResponse();
-        // $response->multiple_choice_response_group_id = 3;
-        // $response->title = 'Pass-cust';
-        // $response->color = '#008000';
-        // $response->value = 1;
-        // $response->save();
-
-        // $response = new MultipleChoiceResponse();
-        // $response->multiple_choice_response_group_id = 3;
-        // $response->title = 'Fail-cust';
-        // $response->color = '#FF0000';
-        // $response->value = 0;
-        // $response->save();
-
-        // $response = new MultipleChoiceResponse();
-        // $response->multiple_choice_response_group_id = 3;
-        // $response->title = 'N/A-cust';
-        // $response->color = '#808080';
-        // $response->value = 0;
-        // $response->save();
+    
 
     }
 }

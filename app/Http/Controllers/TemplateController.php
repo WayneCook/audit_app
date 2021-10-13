@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Template;
+use App\Models\ResponseType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MultipleChoiceResponseGroup;
@@ -32,7 +33,8 @@ class TemplateController extends Controller
     
     {
         return inertia('Admin/Templates/Create', [
-            'template' => Template::with('sections.questions.responseType')->with(['multipleChoiceResponseTypes.multipleChoiceResponses'])->find(1)
+            'template' => Template::with('sections.questions.responseType')->with(['multipleChoiceResponseTypes.multipleChoiceResponses'])->find(1),
+            'template.default_response_types' => ResponseType::whereNull('template_id')->get()
         ]);
     }
 

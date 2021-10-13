@@ -72,20 +72,11 @@ class TemplateQuestionController extends Controller
      * @param  \App\Models\TemplateQuestion  $templateQuestion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TemplateQuestion $question)
+    public function update(Request $request, TemplateQuestion $templateQuestion)
     {
 
-
-      $question->update($request->question);
-
+      $templateQuestion->update($request->except('response_type'));
       return back();
-
-
-      // $templateQuestion = TemplateQuestion::find($request->question_id);
-      // $templateQuestion->question = $request->question;
-      // $templateQuestion->save();
-
-      // return back();
 
     }
 
@@ -97,6 +88,8 @@ class TemplateQuestionController extends Controller
      */
     public function destroy(TemplateQuestion $templateQuestion)
     {
-        //
+        
+        $templateQuestion->delete();
+         return back();
     }
 }

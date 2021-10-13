@@ -23,8 +23,6 @@ class TemplateSectionSeeder extends Seeder
         $section->template_id = 1;
         $section->save();
 
-        
-
         $section = new TemplateSection();
         $section->title = 'Backrooms';
         $section->template_id = 1;
@@ -35,8 +33,6 @@ class TemplateSectionSeeder extends Seeder
         $section->template_id = 1;
         $section->save();
         $section->questions()->save(new TemplateQuestion());
-
-        
 
         $section = new TemplateSection();
         $section->title = 'Recieving area';

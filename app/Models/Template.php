@@ -21,19 +21,14 @@ class Template extends Model
     }
 
 
-    public function defualtMultipleChoiceResponseGroups()
-    {
-        return ResponseType::whereNull('template_id')->get();
-    }
-
     public function multipleChoiceResponseTypes()
     {
         return $this->hasMany(ResponseType::class);
     }
 
-    public function availableResponses()
+    public function defaultResponseTypes()
     {
-        return $this->hasMany(AvailableResponse::class);
+        return $this->whereNull(ResponseType::class);
     }
 
   

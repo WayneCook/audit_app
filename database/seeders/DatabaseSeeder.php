@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TemplateSeeder::class);
         $this->call(TemplateSectionSeeder::class);
         $this->call(TemplateQuestionSeeder::class);
-        $this->call(MultipleChoiceResponseSeeder::class);
         $this->call(ResponseTypeSeeder::class);
  
     }

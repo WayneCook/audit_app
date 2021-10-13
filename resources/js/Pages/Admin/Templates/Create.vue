@@ -68,12 +68,6 @@ import { EventBus } from '@/Eventbus/event-bus.js'
 }
 
 
-/* textarea {
-  resize: none;
-  width: 100%;
-  overflow: hidden;
-  padding: 5px;
-} */
 
 
 </style>

@@ -41,8 +41,8 @@ Route::get('/departments/home', [DepartmentController::class, 'home'])->middlewa
 Route::resource('audits', AuditController::class);
 Route::resource('departments', DepartmentController::class)->middleware(['auth','admin']);
 Route::resource('templates', TemplateController::class)->middleware(['auth','admin']);
-Route::resource('question', TemplateQuestionController::class)->middleware(['auth','admin']);
-Route::resource('custom_response_group', CustomResponseGroupController::class)->middleware(['auth','admin']);
+Route::resource('templateQuestion', TemplateQuestionController::class)->middleware(['auth','admin']);
+// Route::resource('custom_response_group', CustomResponseGroupController::class)->middleware(['auth','admin']);
 // Route::resource('multiple_choice_response_groups/{template}', MultipleChoiceResponseGroupController::class)->middleware(['auth','admin']);
 
 

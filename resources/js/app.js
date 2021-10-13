@@ -10,13 +10,13 @@ import VueDraggable from 'vuedraggable'
 import Vue from 'vue'
 import vuetify from 'vuetify'
 import Vuex from 'vuex'
-
-
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 
 Vue.use(Vuex)
 Vue.use(vuetify)
-Vue.use(VueDraggable);
+Vue.use(VueDraggable)
+Vue.use(VueTextareaAutosize)
 
 
 

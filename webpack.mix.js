@@ -25,6 +25,7 @@ mix.alias({
 
 
     mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/overFlowing.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css').vue();
     mix.browserSync({
         injectChanges: false,

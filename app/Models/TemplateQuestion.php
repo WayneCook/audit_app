@@ -35,6 +35,11 @@ class TemplateQuestion extends Model implements Sortable, Scope
       return $this->belongsTo(ResponseType::class);
     }
 
+    public function buildSortQuery()
+    {
+        return static::query()->where('template_section_id', $this->template_section_id);
+    }
+
  
 
 

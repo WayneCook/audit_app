@@ -120,6 +120,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+
+      dd($department);
         $department->delete();
         return back();
     }

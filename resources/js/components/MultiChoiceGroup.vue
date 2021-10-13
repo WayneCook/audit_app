@@ -1,5 +1,4 @@
-<template>
-    
+<template>    
     <v-container fluid class="multiContainer ma-0 pa-0">
         <v-row dense>
             <v-col dense>
@@ -36,15 +35,10 @@
                                 mdi-plus
                                 
                               </v-icon>
-
-
                             </template>
                             <span>Create custom response</span>
-                          </v-tooltip>
-
-                          
+                          </v-tooltip>                          
                         </div>
-
                       </v-col>
                                          
                   </v-row>
@@ -53,7 +47,7 @@
                 <v-list-item-group>
                   <v-divider></v-divider>
 
-                  <v-list-item @click="updateQuestion(multipleChoiceResponse.id)" class="ma-0 pa-0" v-for="(multipleChoiceResponse, index) in multipleChoiceResponses" :key="multipleChoiceResponse.id">
+                  <v-list-item @click="updateQuestion(multipleChoiceResponse.id, multipleChoiceResponse)" class="ma-0 pa-0" v-for="(multipleChoiceResponse, index) in multipleChoiceResponses" :key="multipleChoiceResponse.id">
                   <v-list-item-content class="ma-0 pa-0">
                     <v-container>
                       <v-row>
@@ -74,17 +68,31 @@
                   </v-list-item-content>
                 </v-list-item>
 
+                <v-subheader>Other responses</v-subheader>
+
+                <v-list-item @click="updateQuestion(defaultResponseType.id, defaultResponseType)" class="ma-0 pa-0" v-for="(defaultResponseType, index) in defaultResponseTypes" :key="defaultResponseType.id">
+                  <v-list-item-content class="ma-0 pa-0">
+                    <v-container class="ma-0 pa-0">
+                    
+
+                            <v-icon>
+                              {{ defaultResponseType.icon }}
+                            </v-icon>
+                         
+                              {{ defaultResponseType.description }}
+                      
+                    </v-container>
+                  </v-list-item-content>
+                </v-list-item>
+
                 </v-list-item-group>
               </v-list>
-
 
             </v-col>
         </v-row>
     </v-container>
 
 </template>
-
-
 
 <script>
 
@@ -111,16 +119,23 @@ export default {
           col = parseInt(col, 16);
           return (((col & 0x0000FF) + amt) | ((((col >> 8) & 0x00FF) + amt) << 8) | (((col >> 16) + amt) << 16)).toString(16);
       },
-      updateQuestion(id) {
+      updateQuestion(id, responseType) {
+
+        console.log(id);
+
+
+        this.question.response_type = responseType
  
         if(id !== this.oldQuestion.response_type_id) {
           this.oldQuestion.response_type_id = id
-          delete this.oldQuestion.response_type
+
 
           this.$inertia.put(`/question/${this.question.id}`, 
-            { question: this.oldQuestion},
+            this.oldQuestion,
             { preserveState: true, preserveScroll: true  } ) 
+
         }
+
       },
       toggleMenuState() {
         EventBus.$emit('toggleMenuState')
@@ -131,6 +146,9 @@ export default {
     computed: {
         multipleChoiceResponses() {
           return this.$page.props.template.multiple_choice_response_types
+        },
+        defaultResponseTypes() {
+          return this.$page.props.template.default_response_types
         }
     }
 
